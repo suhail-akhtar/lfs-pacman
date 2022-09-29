@@ -25,13 +25,15 @@ Pacman depends on the following packages:
 - libarchive
 - pkg-config
 - fakeroot, which in turn depends on libcap
-- openssl
+- openssl 3.0.5
+- wget 1.21.3  - incase you want to use pacman to download remote repository
 - pacman 5.2.2
 
 Most of these are not part of the LFS book, so download their sources manually:
 
 - libarchive: <https://www.libarchive.org/downloads/libarchive-3.3.2.tar.gz>
 - fakeroot: <https://deb.debian.org/debian/pool/main/f/fakeroot/fakeroot_1.29.orig.tar.gz>
+- wget: <https://ftp.gnu.org/gnu/wget/wget-1.21.3.tar.gz>
 - pacman: <https://sources.archlinux.org/other/pacman/pacman-5.2.2.tar.gz>
 
 Build these packages using the following commands. Just like the LFS book, these commands assume you've extracted the relevant sources and `cd`'d into the resulting directory.
@@ -84,7 +86,7 @@ make
 make install
 ```
 
-## openssl 3.0.5
+#### openssl 3.0.5
 ```
 ./config --prefix=$LFS/tools         \
          --openssldir=$LFS/etc/ssl \
@@ -95,6 +97,16 @@ make
 make test
 sed -i '/INSTALL_LIBS/s/libcrypto.a libssl.a//' Makefile
 make MANSUFFIX=ssl install
+
+```
+
+#### wget 1.21.3
+```
+./configure --prefix=$LFS/tools      \
+            --sysconfdir=$LFS/etc  \
+            --with-ssl=openssl &&
+make
+make install
 
 ```
 
