@@ -1,4 +1,4 @@
-# Pacman on LFS 8.1
+# Pacman on LFS 11.2
 
 Based on [the guide writen by James Kimball](http://lists.linuxfromscratch.org/pipermail/hints/2013-March/003304.html) in 2013.  
 Licensed under the [Creative Commons Attribution-ShareAlike 3.0 License](https://creativecommons.org/licenses/by-sa/3.0/).
@@ -15,7 +15,7 @@ This guide is divided in five stages, the first one of which starts just before 
 
 ## Stage 1 - Installing pacman to your temporary toolchain
 
-This stage begins right before section **6.7. Linux-4.9.9 API Headers** of the LFS 8.1 book.
+This stage begins right after chapter-06 of the LFS 11.2 book.
 
 ### Pacman dependencies
 
@@ -25,27 +25,30 @@ Pacman depends on the following packages:
 - libarchive
 - pkg-config
 - fakeroot, which in turn depends on libcap
+- openssl
+- pacman 5.2.2
 
 Most of these are not part of the LFS book, so download their sources manually:
 
 - libarchive: <https://www.libarchive.org/downloads/libarchive-3.3.2.tar.gz>
-- fakeroot: <http://turul.canonical.com/pool/main/f/fakeroot/fakeroot_1.22.orig.tar.bz2>
-- pacman: <https://sources.archlinux.org/other/pacman/pacman-5.0.2.tar.gz>
+- fakeroot: <https://deb.debian.org/debian/pool/main/f/fakeroot/fakeroot_1.29.orig.tar.gz>
+- pacman: <https://sources.archlinux.org/other/pacman/pacman-5.2.2.tar.gz>
 
 Build these packages using the following commands. Just like the LFS book, these commands assume you've extracted the relevant sources and `cd`'d into the resulting directory.
 
 #### zlib 1.2.11
 
 ```
-./configure --prefix=/tools
+./configure --prefix=$LFS/tools
 make
 make install
 ```
 
-#### libarchive 3.3.2
+#### libarchive 3.6.1
 
 ```
-./configure --prefix=/tools --without-xml2 --disable-shared
+sed '/linux\/fs\.h/d' -i libarchive/archive_read_disk_posix.c
+./configure --prefix=$LFS/tools --without-xml2 --disable-shared
 make
 make install
 ```
@@ -53,12 +56,12 @@ make install
 #### pkg-config 0.29.2
 
 ```
-./configure --prefix=/tools            \
+./configure --prefix=$LFS/tools            \
             --with-internal-glib       \
             --disable-compile-warnings \
             --disable-host-tool        \
             --disable-shared           \
-            --docdir=/tools/share/doc/pkg-config-0.29.2
+            --docdir=$LFS/tools/share/doc/pkg-config-0.29.2
 make
 make install
 ```
@@ -67,28 +70,42 @@ make install
 
 ```
 make
-make RAISE_SETFCAP=no lib=lib prefix=/tools install
-chmod -v 755 /tools/lib/libcap.so
+make RAISE_SETFCAP=no lib=lib prefix=$LFS/tools install
+chmod -v 755 $LFS/tools/lib/libcap.so
 ```
 
-#### fakeroot 1.22
+#### fakeroot 1.29
 
 ```
-./configure --prefix=/tools                 \
-            --libdir=/tools/lib/libfakeroot \
+./configure --prefix=$LFS/tools                 \
+            --libdir=$LFS/tools/lib/libfakeroot \
             --with-ipc=sysv
 make
 make install
 ```
 
-### Pacman 5.0.2
+## openssl 3.0.5
+```
+./config --prefix=$LFS/tools         \
+         --openssldir=$LFS/etc/ssl \
+         --libdir=lib          \
+         shared                \
+         zlib-dynamic
+make
+make test
+sed -i '/INSTALL_LIBS/s/libcrypto.a libssl.a//' Makefile
+make MANSUFFIX=ssl install
 
 ```
-./configure --prefix=/tools   \
+
+### Pacman 5.2.2
+
+```
+./configure --prefix=$LFS/tools   \
             --disable-doc     \
             --disable-shared  \
-            --sysconfdir=/etc \
-            --localstatedir=/var
+            --sysconfdir=$LFS/etc \
+            --localstatedir=$LFS/var
 make
 make install
 ```
