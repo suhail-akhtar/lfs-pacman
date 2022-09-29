@@ -58,12 +58,12 @@ make install
 #### pkg-config 0.29.2
 
 ```
-./configure --prefix=$LFS/tools            \
+./configure --prefix=$LFS/usr            \
             --with-internal-glib       \
             --disable-compile-warnings \
             --disable-host-tool        \
             --disable-shared           \
-            --docdir=$LFS/tools/share/doc/pkg-config-0.29.2
+            --docdir=$LFS/usr/share/doc/pkg-config-0.29.2
 make
 make install
 ```
@@ -72,15 +72,15 @@ make install
 
 ```
 make
-make RAISE_SETFCAP=no lib=lib prefix=$LFS/tools install
-chmod -v 755 $LFS/tools/lib/libcap.so
+make RAISE_SETFCAP=no lib=lib prefix=$LFS/usr install
+chmod -v 755 $LFS/usr/lib/libcap.so
 ```
 
 #### fakeroot 1.29
 
 ```
-./configure --prefix=$LFS/tools                 \
-            --libdir=$LFS/tools/lib/libfakeroot \
+./configure --prefix=$LFS/usr                 \
+            --libdir=$LFS/usr/lib/libfakeroot \
             --with-ipc=sysv
 make
 make install
@@ -88,7 +88,7 @@ make install
 
 #### openssl 3.0.5
 ```
-./config --prefix=$LFS/tools         \
+./config --prefix=$LFS/usr         \
          --openssldir=$LFS/etc/ssl \
          --libdir=lib          \
          shared                \
@@ -102,7 +102,7 @@ make MANSUFFIX=ssl install
 
 #### wget 1.21.3
 ```
-./configure --prefix=$LFS/tools      \
+./configure --prefix=$LFS/usr      \
             --sysconfdir=$LFS/etc  \
             --with-ssl=openssl &&
 make
@@ -113,7 +113,7 @@ make install
 ### Pacman 5.2.2
 
 ```
-./configure --prefix=$LFS/tools   \
+./configure --prefix=$LFS/usr   \
             --disable-doc     \
             --disable-shared  \
             --sysconfdir=$LFS/etc \
