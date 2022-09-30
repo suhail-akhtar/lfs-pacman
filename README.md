@@ -1,6 +1,5 @@
 # Pacman on LFS 11.2
-
-Based on [the guide writen by James Kimball](http://lists.linuxfromscratch.org/pipermail/hints/2013-March/003304.html) in 2013.  
+ 
 Licensed under the [Creative Commons Attribution-ShareAlike 3.0 License](https://creativecommons.org/licenses/by-sa/3.0/).
 
 ## Introduction
@@ -15,7 +14,7 @@ This guide is divided in five stages, the first one of which starts just before 
 
 ## Stage 1 - Installing pacman to your temporary toolchain
 
-This stage begins right after chapter-06 of the LFS 11.2 book.
+This stage begins right after chapter-07 and you need to also remove the tools folder of the LFS 11.2 book.
 
 ### Pacman dependencies
 
