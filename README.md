@@ -32,6 +32,7 @@ Most of these are not part of the LFS book, so download their sources manually:
 
 - libarchive: <https://www.libarchive.org/downloads/libarchive-3.3.2.tar.gz>
 - fakeroot: <https://deb.debian.org/debian/pool/main/f/fakeroot/fakeroot_1.29.orig.tar.gz>
+- fakeroot: <https://src.fedoraproject.org/repo/pkgs/fakeroot/fakeroot_1.29.orig.tar.gz/sha512/d0f02c36cfe4e24f1588894bd732ff5a6fc0e921695236311019a63280efdca8568f2e974672145eb7c4d57f64a15a77d23658fd4aeef2ca24901fc66259e4dc/fakeroot_1.29.orig.tar.gz>
 - wget: <https://ftp.gnu.org/gnu/wget/wget-1.21.3.tar.gz>
 - pacman: <https://sources.archlinux.org/other/pacman/pacman-5.2.2.tar.gz>
 
