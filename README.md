@@ -148,8 +148,9 @@ Server = https://archive.archlinux.org/repos/last/$repo/os/$arch
 
 if you set above configuration, then you don't need to build the packages by your self, all the packages will be downloaded from Arch Linux repositories if you like.
 To Sync repositories execute following command
+```
 pacman -Sy
-
+```
 also to enable internet access from your LFS chroot, do following
 ```
 touch /etc/resolv.conf
