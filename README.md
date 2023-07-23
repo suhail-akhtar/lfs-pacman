@@ -151,11 +151,13 @@ To Sync repositories execute following command
 pacman -Sy
 
 also to enable internet access from your LFS chroot, do following
-- touch /etc/resolv.conf
-- cat > /etc/resolv.conf << "EOF"
-- nameserver 8.8.8.8
-- nameserver 8.8.4.4
-- EOF
+```
+touch /etc/resolv.conf
+cat > /etc/resolv.conf << "EOF"
+nameserver 8.8.8.8
+nameserver 8.8.4.4
+EOF
+```
 
 ### Setting up to build packages with pacman
 
