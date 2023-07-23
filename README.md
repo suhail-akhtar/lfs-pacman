@@ -110,7 +110,7 @@ make install
 
 ```
 
-### Pacman 5.2.2
+#### Pacman 5.2.2
 
 ```
 ./configure --prefix=$LFS/usr   \
@@ -130,6 +130,23 @@ CHOST="x86_64-pc-linux-gnu"
 ```
 
 You can set your name and email address as the `PACKAGER` if you want.
+
+#### /etc/pacman.conf or /etc/pacman.d/mirrorlist - Arch Linux Public Repository Urls
+```
+[core]
+Server = https://archive.archlinux.org/repos/last/$repo/os/$arch
+
+[extra]
+Server = https://archive.archlinux.org/repos/last/$repo/os/$arch
+
+[community]
+Server = https://archive.archlinux.org/repos/last/$repo/os/$arch
+
+[multilib]
+Server = https://archive.archlinux.org/repos/last/$repo/os/$arch
+```
+
+if you set above configuration, then you don't need to build the packages by your self, all the packages will be downloaded from Arch Linux repositories if you like.
 
 ### Setting up to build packages with pacman
 
